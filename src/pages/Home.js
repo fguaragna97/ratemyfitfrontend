@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from "react";
+import { Alert, Spinner } from "react-bootstrap";
+import { getPosts } from "../api/posts";
 import PostsList from "../components/PostsList";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/posts", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const { data } = await response.json();
-        console.log(data);
+        setError("");
+        setLoading(true);
+
+        const data = await getPosts();
+
         setPosts(data);
-      } catch (error) {}
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError(error);
+      }
     };
     fetchdata();
   }, []);
-  return <PostsList data={posts}></PostsList>;
+
+  if (loading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
+  return (
+    <>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <PostsList data={posts}></PostsList>;
+    </>
+  );
 }
