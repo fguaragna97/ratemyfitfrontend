@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { LoginUser } from "../api/users";
+import { UserContext } from "../App";
 
 export default function Login() {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -21,8 +23,7 @@ export default function Login() {
     }
 
     const data = await LoginUser(body);
-
-    console.log(data);
+    setUser(data);
     if (data) {
       navigate("/");
     } else {

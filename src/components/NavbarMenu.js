@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import NavUser from "./NavUser";
 
 export default function NavbarMenu() {
   return (
@@ -10,13 +11,17 @@ export default function NavbarMenu() {
           RateMyFit
         </Link>
         <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
+        {/* <Navbar.Collapse className="justify-content-end">
           <Link to={"/Login"} className="nav-link">
             Login
           </Link>
           <Link to={"/Register"} className="nav-link">
             Register
           </Link>
+        </Navbar.Collapse> */}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto"></Nav>
+          <NavUser></NavUser>
         </Navbar.Collapse>
       </Container>
     </Navbar>
