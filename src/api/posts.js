@@ -7,7 +7,10 @@ export const getPosts = async () => {
 export const newPost = async (body) => {
   const response = await fetch(`${process.env.REACT_APP_APIURL}/api/posts`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
     body: JSON.stringify(body),
   });
   const { data } = await response.json();

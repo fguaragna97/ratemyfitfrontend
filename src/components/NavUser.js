@@ -13,13 +13,13 @@ export default function NavUser() {
   };
   return user?.email ? (
     <Nav>
-      <Link to="/upload" className="nav-link">
+      <Link to="/upload" className="btn btn-light">
         + New Post
       </Link>
       <Link to="/profile" className="nav-link">
         {user.username}
       </Link>
-      <button type="button" onClick={handleLogout}>
+      <button type="button" onClick={handleLogout} className="btn btn-danger">
         Logout
       </button>
     </Nav>

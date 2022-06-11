@@ -23,8 +23,10 @@ export default function Login() {
     }
 
     const data = await LoginUser(body);
-    setUser(data);
+
     if (data) {
+      localStorage.setItem("token", data.token);
+      setUser(data);
       navigate("/");
     } else {
       console.log("User not found");

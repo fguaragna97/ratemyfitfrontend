@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Upload from "./pages/Upload";
+import Footer from "./components/Footer";
 
 export const UserContext = React.createContext(null);
 
@@ -34,6 +35,7 @@ function App() {
           </Col>
         </Row>
       </Container>
+      <Footer></Footer>
     </UserContext.Provider>
   );
 }
